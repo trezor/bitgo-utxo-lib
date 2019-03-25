@@ -33,11 +33,11 @@ coins.isLitecoin = function (network) {
 }
 
 coins.isZcash = function (network) {
-    return typeforce.value(coins.ZEC)(network.coin) || this.isKomodo(network);
+  return typeforce.value(coins.ZEC)(network.coin) || this.isKomodo(network)
 }
 
 coins.isKomodo = function (network) {
-    return typeforce.value(coins.KMD)(network.coin)
+  return typeforce.value(coins.KMD)(network.coin)
 }
 
 coins.isValidCoin = typeforce.oneOf(

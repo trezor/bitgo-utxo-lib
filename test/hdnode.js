@@ -176,7 +176,8 @@ describe('HDNode', function () {
   describe('fromBase58 / toBase58', function () {
     validAll.forEach(function (f) {
       it('exports ' + f.base58 + ' (public) correctly', function () {
-        var hd = HDNode.fromBase58(f.base58, NETWORKS_LIST)
+        var networks = f.network ? NETWORKS[f.network] : NETWORKS_LIST
+        var hd = HDNode.fromBase58(f.base58, networks)
 
         assert.strictEqual(hd.toBase58(), f.base58)
         assert.throws(function () { hd.keyPair.toWIF() }, /Missing private key/)
@@ -185,7 +186,8 @@ describe('HDNode', function () {
 
     validAll.forEach(function (f) {
       it('exports ' + f.base58Priv + ' (private) correctly', function () {
-        var hd = HDNode.fromBase58(f.base58Priv, NETWORKS_LIST)
+        var networks = f.network ? NETWORKS[f.network] : NETWORKS_LIST
+        var hd = HDNode.fromBase58(f.base58Priv, networks)
 
         assert.strictEqual(hd.toBase58(), f.base58Priv)
         assert.strictEqual(hd.keyPair.toWIF(), f.wif)
@@ -206,7 +208,8 @@ describe('HDNode', function () {
   describe('getIdentifier', function () {
     validAll.forEach(function (f) {
       it('returns the identifier for ' + f.fingerprint, function () {
-        var hd = HDNode.fromBase58(f.base58, NETWORKS_LIST)
+        var networks = f.network ? NETWORKS[f.network] : NETWORKS_LIST
+        var hd = HDNode.fromBase58(f.base58, networks)
 
         assert.strictEqual(hd.getIdentifier().toString('hex'), f.identifier)
       })
@@ -216,7 +219,8 @@ describe('HDNode', function () {
   describe('getFingerprint', function () {
     validAll.forEach(function (f) {
       it('returns the fingerprint for ' + f.fingerprint, function () {
-        var hd = HDNode.fromBase58(f.base58, NETWORKS_LIST)
+        var networks = f.network ? NETWORKS[f.network] : NETWORKS_LIST
+        var hd = HDNode.fromBase58(f.base58, networks)
 
         assert.strictEqual(hd.getFingerprint().toString('hex'), f.fingerprint)
       })
@@ -226,7 +230,8 @@ describe('HDNode', function () {
   describe('neutered / isNeutered', function () {
     validAll.forEach(function (f) {
       it('drops the private key for ' + f.fingerprint, function () {
-        var hd = HDNode.fromBase58(f.base58Priv, NETWORKS_LIST)
+        var networks = f.network ? NETWORKS[f.network] : NETWORKS_LIST
+        var hd = HDNode.fromBase58(f.base58Priv, networks)
         var hdn = hd.neutered()
 
         assert.notEqual(hdn.keyPair, hd.keyPair)
