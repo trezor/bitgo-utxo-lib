@@ -230,7 +230,8 @@ describe('HDNode', function () {
   describe('neutered / isNeutered', function () {
     validAll.forEach(function (f) {
       it('drops the private key for ' + f.fingerprint, function () {
-        var hd = HDNode.fromBase58(f.base58Priv, NETWORKS_LIST)
+        var networks = f.network ? NETWORKS[f.network] : NETWORKS_LIST
+        var hd = HDNode.fromBase58(f.base58Priv, networks)
         var hdn = hd.neutered()
 
         assert.notEqual(hdn.keyPair, hd.keyPair)
