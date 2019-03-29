@@ -215,7 +215,8 @@ describe('ECPair', function () {
   describe('getAddress', function () {
     fixtures.valid.forEach(function (f) {
       it('returns ' + f.address + ' for ' + f.WIF, function () {
-        var keyPair = ECPair.fromWIF(f.WIF, NETWORKS_LIST)
+        var networks = NETWORKS_LIST.filter(n => n.wif !== 0);
+        var keyPair = ECPair.fromWIF(f.WIF, networks)
 
         assert.strictEqual(keyPair.getAddress(), f.address)
       })
@@ -226,7 +227,8 @@ describe('ECPair', function () {
     fixtures.valid.forEach(function (f) {
       it('returns ' + f.network + ' for ' + f.WIF, function () {
         var network = NETWORKS[f.network]
-        var keyPair = ECPair.fromWIF(f.WIF, NETWORKS_LIST)
+        var networks = NETWORKS_LIST.filter(n => n.wif !== 0);
+        var keyPair = ECPair.fromWIF(f.WIF, networks)
 
         assert.strictEqual(keyPair.getNetwork(), network)
       })

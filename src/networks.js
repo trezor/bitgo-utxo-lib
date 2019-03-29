@@ -185,7 +185,7 @@ module.exports = {
     },
     pubKeyHash: 28,
     scriptHash: 35,
-    wif: 0xef,
+    wif: 0,
     coin: coins.CAPRICOIN
   }
 }
