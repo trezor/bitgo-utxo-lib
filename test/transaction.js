@@ -181,51 +181,6 @@ describe('Transaction', function () {
     })
   })
 
-  describe('fromBuffer/fromHex for DOGE', function () {
-    fixtures.doge.valid.forEach(function (testData) {
-      it('imports ' + testData.description, function () {
-        Transaction.USE_STRING_VALUES = true
-        const tx = Transaction.fromHex(testData.hex, networks.doge)
-        assert.equal(tx.ins.length, testData.ins.length)
-        assert.equal(tx.outs.length, testData.outs.length)
-        tx.ins.forEach(function (input, i) {
-          assert.equal(input.hash.toString('hex'), testData.ins[i].hash)
-          assert.equal(input.index, testData.ins[i].index)
-          assert.equal(input.script.toString('hex'), testData.ins[i].script)
-          assert.equal(input.sequence, testData.ins[i].sequence)
-        })
-
-        tx.outs.forEach(function (output, i) {
-          assert.equal(output.value, testData.outs[i].value)
-          assert.equal(output.script.toString('hex'), testData.outs[i].script)
-        })
-        Transaction.USE_STRING_VALUES = false
-      })
-    })
-
-    fixtures.doge.valid.forEach(function (testData) {
-      it('exports ' + testData.description, function () {
-        Transaction.USE_STRING_VALUES = true
-        const tx = Transaction.fromHex(testData.hex, networks.doge)
-        const hashTx = tx.getId()
-        const hexTx = tx.toHex()
-        assert.equal(testData.hex, hexTx)
-        assert.equal(testData.hash, hashTx)
-        Transaction.USE_STRING_VALUES = false
-      })
-    })
-
-    fixtures.doge.valid.forEach(function (testData) {
-      it('clone ' + testData.description, function () {
-        Transaction.USE_STRING_VALUES = true
-        const tx = Transaction.fromHex(testData.hex, networks.doge)
-        const clonedTx = tx.clone()
-        assert.equal(clonedTx.toHex(), testData.hex)
-        Transaction.USE_STRING_VALUES = false
-      })
-    })
-  })
-
   describe('toBuffer/toHex', function () {
     fixtures.valid.forEach(function (f) {
       it('exports ' + f.description + ' (' + f.id + ')', function () {
