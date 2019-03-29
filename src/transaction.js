@@ -294,6 +294,10 @@ Transaction.fromBuffer = function (buffer, network = networks.bitcoin, __noStric
     tx.versionGroupId = readUInt32()
   }
 
+  if (coins.isCapricoin(tx.network)) {
+    tx.timestamp = readUInt32()
+  }
+
   var vinLen = readVarInt()
   for (var i = 0; i < vinLen; ++i) {
     tx.ins.push({
@@ -558,6 +562,7 @@ Transaction.prototype.clone = function () {
   var newTx = new Transaction(this.network)
   newTx.version = this.version
   newTx.locktime = this.locktime
+  newTx.timestamp = this.timestamp
   newTx.network = this.network
 
   if (coins.isDash(this.network)) {
@@ -1040,6 +1045,10 @@ Transaction.prototype.__toBuffer = function (buffer, initialOffset, __allowWitne
     writeUInt8(Transaction.ADVANCED_TRANSACTION_FLAG)
   }
 
+  if (this.timestamp) {
+    writeUInt32(this.timestamp)
+  }
+
   writeVarInt(this.ins.length)
 
   this.ins.forEach(function (txIn) {
@@ -1170,4 +1179,17 @@ Transaction.prototype.setWitness = function (index, witness) {
   this.ins[index].witness = witness
 }
 
+Transaction.prototype.getExtraData = function () {
+  if (this.supportsJoinSplits()) {
+    var buffer = this.toBuffer()
+    var joinsplitByteLength = this.joinsplitByteLength()
+    var res = buffer.slice(buffer.length - joinsplitByteLength)
+    return res
+  }
+  if (this.isDashSpecialTransaction()) {
+    var extraDataLength = varuint.encode(this.extra_payload.length)
+    return Buffer.concat([extraDataLength, this.extra_payload]);
+  }
+  return null
+}
 module.exports = Transaction
