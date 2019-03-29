@@ -52,6 +52,9 @@ function Transaction (network = networks.bitcoin) {
     this.type = 0
     this.extraPayload = Buffer.alloc(0)
   }
+  if (coins.isCapricoin(network)) {
+    this.timestamp = 0
+  }
 }
 
 Transaction.USE_STRING_VALUES = false
@@ -569,12 +572,15 @@ Transaction.prototype.clone = function () {
   var newTx = new Transaction(this.network)
   newTx.version = this.version
   newTx.locktime = this.locktime
-  newTx.timestamp = this.timestamp
   newTx.network = this.network
 
   if (coins.isDash(this.network)) {
     newTx.type = this.type
     newTx.extraPayload = this.extraPayload
+  }
+
+  if (coins.isCapricoin(this.network)) {
+    newTx.timestamp = this.timestamp
   }
 
   if (this.isOverwinterCompatible()) {
@@ -1070,7 +1076,7 @@ Transaction.prototype.__toBuffer = function (buffer, initialOffset, __allowWitne
   this.outs.forEach(function (txOut) {
     if (Transaction.USE_STRING_VALUES) {
       writeUInt64asString(txOut.value)
-    if (!txOut.valueBuffer) {
+    } else if (!txOut.valueBuffer) {
       writeUInt64(txOut.value)
     } else {
       writeSlice(txOut.valueBuffer)
