@@ -54,6 +54,7 @@ function Transaction (network = networks.bitcoin) {
   }
 }
 
+Transaction.USE_STRING_VALUES = false
 Transaction.DEFAULT_SEQUENCE = 0xffffffff
 Transaction.SIGHASH_ALL = 0x01
 Transaction.SIGHASH_NONE = 0x02
@@ -125,6 +126,12 @@ Transaction.fromBuffer = function (buffer, network = networks.bitcoin, __noStric
 
   function readUInt64 () {
     var i = bufferutils.readUInt64LE(buffer, offset)
+    offset += 8
+    return i
+  }
+
+  function readUInt64asString () {
+    var i = bufferutils.readUInt64LEasString(buffer, offset)
     offset += 8
     return i
   }
@@ -312,7 +319,7 @@ Transaction.fromBuffer = function (buffer, network = networks.bitcoin, __noStric
   var voutLen = readVarInt()
   for (i = 0; i < voutLen; ++i) {
     tx.outs.push({
-      value: readUInt64(),
+      value: Transaction.USE_STRING_VALUES ? readUInt64asString() : readUInt64(),
       script: readVarSlice()
     })
   }
@@ -1010,6 +1017,7 @@ Transaction.prototype.__toBuffer = function (buffer, initialOffset, __allowWitne
   function writeUInt32 (i) { offset = buffer.writeUInt32LE(i, offset) }
   function writeInt32 (i) { offset = buffer.writeInt32LE(i, offset) }
   function writeUInt64 (i) { offset = bufferutils.writeUInt64LE(buffer, i, offset) }
+  function writeUInt64asString (i) { offset = bufferutils.writeUInt64LEasString(buffer, i, offset) }
   function writeVarInt (i) {
     varuint.encode(i, buffer, offset)
     offset += varuint.encode.bytes
@@ -1060,6 +1068,8 @@ Transaction.prototype.__toBuffer = function (buffer, initialOffset, __allowWitne
 
   writeVarInt(this.outs.length)
   this.outs.forEach(function (txOut) {
+    if (Transaction.USE_STRING_VALUES) {
+      writeUInt64asString(txOut.value)
     if (!txOut.valueBuffer) {
       writeUInt64(txOut.value)
     } else {
