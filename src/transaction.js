@@ -559,6 +559,7 @@ Transaction.prototype.__byteLength = function (__allowWitness) {
 
   return (
     (hasWitnesses ? 10 : 8) +
+    (this.timestamp ? 4 : 0) +
     varuint.encodingLength(this.ins.length) +
     varuint.encodingLength(this.outs.length) +
     this.ins.reduce(function (sum, input) { return sum + 40 + varSliceSize(input.script) }, 0) +
@@ -1198,7 +1199,7 @@ Transaction.prototype.setWitness = function (index, witness) {
 Transaction.prototype.getExtraData = function () {
   if (this.supportsJoinSplits()) {
     var buffer = this.toBuffer()
-    var joinsplitByteLength = this.joinsplitByteLength()
+    var joinsplitByteLength = this.getJoinSplitByteLength()
     var res = buffer.slice(buffer.length - joinsplitByteLength)
     return res
   }
