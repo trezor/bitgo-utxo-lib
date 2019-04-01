@@ -180,11 +180,11 @@ module.exports = {
     messagePrefix: '\x18Capricoin Signed Message:\n',
     bech32: null,
     bip32: {
-      public: 76067358,
-      private: 76066276
+      public: 0x488b21e,
+      private: 0x0488ade4
     },
-    pubKeyHash: 28,
-    scriptHash: 35,
+    pubKeyHash: 0x1c,
+    scriptHash: 0x23,
     wif: 0,
     coin: coins.CAPRICOIN
   },
