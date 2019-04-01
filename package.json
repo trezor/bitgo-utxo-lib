@@ -1,12 +1,13 @@
 {
-  "name": "bitgo-utxo-lib",
-  "version": "1.5.0",
+  "name": "trezor-utxo-lib",
+  "version": "1.3.1",
   "description": "Client-side Bitcoin JavaScript library",
   "main": "./src/index.js",
   "engines": {
     "node": ">=4.0.0"
   },
   "keywords": [
+    "trezor",
     "bitgo",
     "utxo",
     "bitcoinjs",
@@ -27,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BitGo/bitgo-utxo-lib.git"
+    "url": "https://github.com/trezor/trezor-utxo-lib"
   },
   "files": [
     "src"
