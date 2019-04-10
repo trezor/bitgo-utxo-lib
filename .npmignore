@@ -5,6 +5,7 @@ test
 .arcconfig
 .arclint
 .travis.yml
+.gitignore
 
 # Editors
 .editorconfig
@@ -16,6 +17,7 @@ test
 # Dependency directory
 node_modules
 yarn.lock
+package-lock.json
 
 # OSX
 .DS_Store
