@@ -1,5 +1,20 @@
 coverage
-node_modules
 .nyc_output
-npm-debug.log
+
+# Dependency directory
+node_modules
+package-lock.json
+
+# OSX
+.DS_Store
+
+# Editors
 .idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs
+*.log
+.yarnclean
