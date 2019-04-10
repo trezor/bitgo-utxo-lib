@@ -127,37 +127,5 @@
       "dec": -9223372036854775808,
       "hex64": "0000000000000080"
     }
-  ],
-  "readUInt64LEasString": {
-    "valid": [
-      {
-        "description": "n === 2^53",
-        "dec": "9007199254740992",
-        "hex64": "0000000000002000",
-        "hexVI": "ff0000000000000020"
-      },
-      {
-        "description": "n > 2^53",
-        "dec": "9007199254740993",
-        "hex64": "0100000000002000",
-        "hexVI": "ff0100000000000020"
-      }
-    ]
-  },
-  "writeUInt64LEasString": {
-    "valid": [
-      {
-        "description": "with string value",
-        "dec": "9007199254740992",
-        "hex64": "0000000000002000",
-        "hexVI": "ff0000000000000020"
-      },
-      {
-        "description": "with number value",
-        "dec": 0,
-        "hex64": "0000000000000000",
-        "hexVI": "00"
-      }
-    ]
-  }
+  ]
 }
