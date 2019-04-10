@@ -38,11 +38,15 @@ coins.isLitecoin = function (network) {
 }
 
 coins.isZcash = function (network) {
-  return typeforce.value(coins.ZEC)(network.coin) || this.isKomodo(network)
+  return typeforce.value(coins.ZEC)(network.coin)
 }
 
 coins.isKomodo = function (network) {
   return typeforce.value(coins.KMD)(network.coin)
+}
+
+coins.isZcashType = function (network) {
+  return this.isZcash(network) || this.isKomodo(network)
 }
 
 coins.isCapricoin = function (network) {
@@ -56,8 +60,9 @@ coins.isValidCoin = typeforce.oneOf(
   coins.isBitcoinGold,
   coins.isLitecoin,
   coins.isZcash,
+  coins.isKomodo,
+  coins.isZcashType,
   coins.isCapricoin,
-  coins.isKomodo
 )
 
 module.exports = coins
