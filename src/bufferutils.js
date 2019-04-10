@@ -25,8 +25,6 @@ function readUInt64LEasString (buffer, offset) {
     var result = readUInt64LE(buffer, offset)
     return result.toString()
   } catch (error) {
-    if (error.message !== 'RangeError: value out of range') throw error
-
     var aUint = buffer.readUInt32LE(offset)
     var bUint = buffer.readUInt32LE(offset + 4)
     var m = new BigInteger(Number(0x100000000).toString())
