@@ -12,7 +12,6 @@ var bufferutils = require('../src/bufferutils')
 // Additional tests for Trezor custom changes
 
 describe('Trezor', function () {
-
   describe('Transaction: toHex with invalid output values', function () {
     const fixtures = fixturesTrezor.transaction.invalid
     Transaction.USE_STRING_VALUES = true
@@ -32,8 +31,6 @@ describe('Trezor', function () {
 
   describe('Trezor Transaction: fromBuffer/fromHex with values as strings', function () {
     const fixtures = fixturesTrezor.transaction.valid
-    // const fixtures = fixturesTransaction.valid
-    
     fixtures.forEach(function (testData) {
       it('imports ' + testData.description, function () {
         Transaction.USE_STRING_VALUES = true
@@ -45,13 +42,13 @@ describe('Trezor', function () {
           assert.strictEqual(input.script.toString('hex'), testData.ins[i].script)
           assert.strictEqual(input.sequence, testData.ins[i].sequence)
         })
-        
+
         assert.strictEqual(tx.outs.length, testData.outs.length)
         tx.outs.forEach(function (output, i) {
           assert.strictEqual(output.value, testData.outs[i].value.toString())
           assert.equal(output.script.toString('hex'), testData.outs[i].script)
         })
-        
+
         if (testData.time) {
           assert.strictEqual(tx.timestamp, testData.time)
         }
@@ -78,7 +75,6 @@ describe('Trezor', function () {
       })
     })
   })
-
 
   // copied from ./test/transaction.js
   describe('Zcash Transaction: fromBuffer/fromHex with values as strings', function () {
@@ -152,7 +148,7 @@ describe('Trezor', function () {
         assert.equal(tx.ins.length, testData.vin.length)
         assert.equal(tx.outs.length, testData.vout.length)
         tx.outs.forEach(function (output, i) {
-          const fixtureValue = Math.round(testData.vout[i].value * 100000000);
+          const fixtureValue = Math.round(testData.vout[i].value * 100000000)
           assert.strictEqual(output.value, fixtureValue.toString())
           assert.equal(output.script.toString('hex'), testData.vout[i].scriptPubKey.hex)
         })
@@ -185,7 +181,7 @@ describe('Trezor', function () {
   })
 
   describe('Transaction: getExtraData - Dash', function () {
-    const fixtures = fixturesTransaction.dasht.valid;
+    const fixtures = fixturesTransaction.dasht.valid
     const trezorFixtures = fixturesTrezor.transaction.extraData.dasht
     // const fixtures = fixturesTransaction.dasht.valid.filter(t => typeof t.extraPayload === 'string')
     fixtures.forEach(function (testData, i) {
