@@ -1204,8 +1204,8 @@ Transaction.prototype.getExtraData = function () {
     return res
   }
   if (this.isDashSpecialTransaction()) {
-    var extraDataLength = varuint.encode(this.extra_payload.length)
-    return Buffer.concat([extraDataLength, this.extra_payload])
+    var extraDataLength = varuint.encode(this.extraPayload.length)
+    return Buffer.concat([extraDataLength, this.extraPayload])
   }
   return null
 }

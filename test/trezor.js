@@ -153,7 +153,7 @@ describe('Trezor', function () {
           assert.equal(output.script.toString('hex'), testData.vout[i].scriptPubKey.hex)
         })
         if (tx.isDashSpecialTransaction()) {
-          assert.equal(tx.extra_payload.toString('hex'), testData.extraPayload)
+          assert.equal(tx.extraPayload.toString('hex'), testData.extraPayload)
         }
         Transaction.USE_STRING_VALUES = false
       })
