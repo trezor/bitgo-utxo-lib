@@ -1,6 +1,7 @@
 {
-  "name": "trezor-utxo-lib",
-  "version": "1.5.0-trezor.1",
+  "name": "@trezor/utxo-lib",
+  "version": "0.0.2",
+  "upstreamVersion": "1.5.0",
   "description": "Client-side Bitcoin JavaScript library",
   "main": "./src/index.js",
   "engines": {
