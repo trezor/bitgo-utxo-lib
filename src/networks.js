@@ -205,5 +205,18 @@ module.exports = {
       4: 0x76b809bb
     },
     coin: coins.KMD
+  },
+  unobtanium: {
+    messagePrefix: '\x1bUnobtanium Signed Message:\n',
+    bech32: null,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x82,
+    scriptHash: 0x1e,
+    wif: 0xe0,
+    coin: coins.UNO,
+    forkId: 0x00
   }
 }
