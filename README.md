@@ -23,6 +23,7 @@ Synchronized with upstream 1.5.0 version
 - Dash
 - Litecoin
 - Zcash (Sapling compatible)
+- Unobtanium
 
 ## Features
 - Clean: Pure JavaScript, concise code, easy to read.
