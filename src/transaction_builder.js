@@ -817,6 +817,9 @@ TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashTy
   } else if (coins.isZcashType(this.network)) {
     signatureHash = this.tx.hashForZcashSignature(vin, input.signScript, witnessValue, hashType)
     debug('Calculated ZEC sighash (%s)', signatureHash.toString('hex'))
+  } else if (coins.isUnobtanium(this.network)) {
+    signatureHash = this.tx.hashForSignature(vin,, input.signScript, hashType)
+    debug('Calculated UNO sighash (%s)', signatureHash.toString('hex'))
   } else {
     if (input.witness) {
       signatureHash = this.tx.hashForWitnessV0(vin, input.signScript, witnessValue, hashType)
