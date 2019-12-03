@@ -6,7 +6,7 @@
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 Originally a fork of [bitgo-utxo-lib](https://github.com/BitGo/bitgo-utxo-lib); we evolved this library to support the transaction parsing for Trezor.
-Synchronized with upstream 1.5.0 version
+Synchronized with upstream 1.6.0 version
 
 ## Trezor features
 - Transaction.fromHex returns input values as string
