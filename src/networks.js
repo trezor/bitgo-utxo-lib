@@ -112,7 +112,7 @@ module.exports = {
       // 4: 0x76b809bb (old Sapling branch id)
       4: 0x2bb40e60
     },
-    coin: coins.ZEC
+    coin: coins.TAZ
   },
   bitcoingold: {
     messagePrefix: '\x18Bitcoin Gold Signed Message:\n',
