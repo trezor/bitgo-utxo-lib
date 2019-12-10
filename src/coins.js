@@ -73,7 +73,7 @@ coins.isValidCoin = typeforce.oneOf(
   coins.isKomodo,
   coins.isZcashType,
   coins.isCapricoin,
-  coins.isPeercoin,
+  coins.isPeercoin
 )
 
 module.exports = coins
