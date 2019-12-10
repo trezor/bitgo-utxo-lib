@@ -187,6 +187,30 @@ module.exports = {
     wif: 0,
     coin: coins.CAPRICOIN
   },
+  peercoin: {
+    messagePrefix: '\x18Peercoin Signed Message:\n',
+    bech32: 'pc',
+    bip32: {
+      public: 0x488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x75,
+    wif: 0,
+    coin: coins.PEERCOIN
+  },
+  peercoinTest: {
+    messagePrefix: '\x18Peercoin Signed Message:\n',
+    bech32: 'tpc',
+    bip32: {
+      public: 0x43587cf,
+      private: 0x04358394
+    },
+    pubKeyHash: 0x6f,
+    scriptHash: 0xc4,
+    wif: 0,
+    coin: coins.PEERCOINTEST
+  },
   komodo: {
     messagePrefix: '\x18Komodo Signed Message:\n',
     bech32: 'bc',
