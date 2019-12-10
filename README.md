@@ -14,6 +14,7 @@ Synchronized with upstream 1.6.0 version
 - Komodo support
 - Dash special transactions support
 - Capricoin support
+- Peercoin support
 
 ## Supported coins
 - Bitcoin
