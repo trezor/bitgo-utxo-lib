@@ -14,6 +14,7 @@ Synchronized with upstream 1.6.0 version
 - Komodo support
 - Dash special transactions support
 - Capricoin support
+- Zcash testnet support (coin shortcut: TAZ)
 
 ## Supported coins
 - Bitcoin

@@ -8,6 +8,7 @@ const coins = {
   BTG: 'btg',
   LTC: 'ltc',
   ZEC: 'zec',
+  TAZ: 'taz', // Zcash testnet
   DASH: 'dash',
   CAPRICOIN: 'cpc',
   KMD: 'kmd'
@@ -41,12 +42,16 @@ coins.isZcash = function (network) {
   return typeforce.value(coins.ZEC)(network.coin)
 }
 
+coins.isTaz = function (network) {
+  return typeforce.value(coins.TAZ)(network.coin)
+}
+
 coins.isKomodo = function (network) {
   return typeforce.value(coins.KMD)(network.coin)
 }
 
 coins.isZcashType = function (network) {
-  return this.isZcash(network) || this.isKomodo(network)
+  return this.isZcash(network) || this.isKomodo(network) || this.isTaz(network)
 }
 
 coins.isCapricoin = function (network) {
