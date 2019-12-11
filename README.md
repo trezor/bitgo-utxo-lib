@@ -17,6 +17,12 @@ Synchronized with upstream 1.5.0 version
 - Zcash testnet support (coin shortcut: TAZ)
 - Peercoin support
 
+Update from upstream:
+- `git checkout trezor`
+- `git fetch upstream`
+- `git rebase upstream/master`
+- update package.json `upstreamVersion` field
+
 ## Supported coins
 - Bitcoin
 - Bitcoin Cash
