@@ -205,6 +205,7 @@ function fixMultisigOrder (input, transaction, vin, value, network) {
           hash = transaction.hashForGoldSignature(vin, input.signScript, value, parsed.hashType)
           break
         case coins.ZEC:
+        case coins.TAZ:
           if (value === undefined) {
             return false
           }
