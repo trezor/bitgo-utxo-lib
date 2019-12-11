@@ -3,7 +3,7 @@
 var assert = require('assert')
 var bigi = require('bigi')
 var bitcoin = require('../../')
-var dhttp = require('dhttp/200')
+// var dhttp = require('dhttp/200')
 
 // deterministic RNG for testing only
 function rng () { return Buffer.from('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz') }
@@ -97,7 +97,7 @@ describe('bitcoinjs-lib (addresses)', function () {
     assert.strictEqual(address, '3P4mrxQfmExfhxqjLnR2Ah4WES5EB1KBrN')
   })
 
-  it('can support the retrieval of transactions for an address (via 3PBP)', function (done) {
+  /* it('can support the retrieval of transactions for an address (via 3PBP)', function (done) {
     var keyPair = bitcoin.ECPair.makeRandom()
     var address = keyPair.getAddress()
 
@@ -113,7 +113,7 @@ describe('bitcoinjs-lib (addresses)', function () {
       assert.strictEqual(result.total_sent, 0)
       done()
     })
-  })
+  }) */
 
   // other networks
   it('can generate a Testnet address', function () {

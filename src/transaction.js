@@ -52,7 +52,7 @@ function Transaction (network = networks.bitcoin) {
     this.type = 0
     this.extraPayload = Buffer.alloc(0)
   }
-  if (coins.isCapricoin(network)) {
+  if (coins.hasTimestamp(network)) {
     this.timestamp = 0
   }
 }
@@ -304,7 +304,7 @@ Transaction.fromBuffer = function (buffer, network = networks.bitcoin, __noStric
     tx.versionGroupId = readUInt32()
   }
 
-  if (coins.isCapricoin(tx.network)) {
+  if (coins.hasTimestamp(tx.network)) {
     tx.timestamp = readUInt32()
   }
 
@@ -580,7 +580,7 @@ Transaction.prototype.clone = function () {
     newTx.extraPayload = this.extraPayload
   }
 
-  if (coins.isCapricoin(this.network)) {
+  if (coins.hasTimestamp(this.network)) {
     newTx.timestamp = this.timestamp
   }
 

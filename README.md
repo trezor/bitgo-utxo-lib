@@ -15,6 +15,7 @@ Synchronized with upstream 1.5.0 version
 - Dash special transactions support
 - Capricoin support
 - Zcash testnet support (coin shortcut: TAZ)
+- Peercoin support
 
 ## Supported coins
 - Bitcoin

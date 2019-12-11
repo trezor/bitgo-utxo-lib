@@ -11,6 +11,8 @@ const coins = {
   TAZ: 'taz', // Zcash testnet
   DASH: 'dash',
   CAPRICOIN: 'cpc',
+  PEERCOIN: 'ppc',
+  PEERCOINTEST: 'tppc',
   KMD: 'kmd'
 }
 
@@ -58,6 +60,14 @@ coins.isCapricoin = function (network) {
   return typeforce.value(coins.CAPRICOIN)(network.coin)
 }
 
+coins.isPeercoin = function (network) {
+  return typeforce.value(coins.PEERCOIN)(network.coin) || typeforce.value(coins.PEERCOINTEST)(network.coin)
+}
+
+coins.hasTimestamp = function (network) {
+  return this.isCapricoin(network) || this.isPeercoin(network)
+}
+
 coins.isValidCoin = typeforce.oneOf(
   coins.isBitcoin,
   coins.isBitcoinCash,
@@ -67,7 +77,8 @@ coins.isValidCoin = typeforce.oneOf(
   coins.isZcash,
   coins.isKomodo,
   coins.isZcashType,
-  coins.isCapricoin
+  coins.isCapricoin,
+  coins.isPeercoin
 )
 
 module.exports = coins
