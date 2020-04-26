@@ -136,6 +136,49 @@ describe('TransactionBuilder', function () {
       })
     })
 
+    fixtures.decred.valid.forEach(function (testData) {
+      it('returns TransactionBuilder, with ' + testData.description, function () {
+        var network = NETWORKS['decred']
+        var tx = Transaction.fromHex(testData.hex, network)
+        var txb = TransactionBuilder.fromTransaction(tx, network)
+        assert.equal(txb.tx.version, testData.version)
+        assert.equal(txb.tx.type, testData.type)
+        assert.equal(txb.tx.ins.length, testData.insLength)
+        assert.equal(txb.tx.outs.length, testData.outsLength)
+        assert.equal(txb.tx.locktime, testData.locktime)
+        assert.equal(txb.tx.expiry, testData.expiry)
+        for (var i = 0; i < tx.ins.length; i++) {
+          var hashCopy = Buffer.allocUnsafe(32)
+          txb.tx.ins[i].hash.copy(hashCopy)
+          assert.equal(hashCopy.reverse().toString('hex'), testData.ins[i].hash)
+          assert.equal(txb.tx.ins[i].index, testData.ins[i].index)
+          assert.equal(txb.tx.ins[i].tree, testData.ins[i].tree)
+          assert.equal(txb.tx.ins[i].sequence, testData.ins[i].sequence)
+          if (tx.hasWitnesses()) {
+            assert.equal(tx.ins[i].witness.script.toString('hex'), testData.ins[i].script)
+            assert.equal(tx.ins[i].witness.value, testData.ins[i].value)
+            assert.equal(tx.ins[i].witness.height, testData.ins[i].height)
+            assert.equal(tx.ins[i].witness.blockIndex, testData.ins[i].blockIndex)
+          }
+        }
+        for (i = 0; i < tx.outs.length; i++) {
+          assert.equal(txb.tx.outs[i].value, testData.outs[i].value)
+          assert.equal(txb.tx.outs[i].script.toString('hex'), testData.outs[i].script)
+          assert.equal(txb.tx.outs[i].version, testData.outs[i].version)
+        }
+      })
+    })
+    // Test failure modes.
+    fixtures.decred.invalid.forEach(function (f) {
+      it('throws ' + f.exception + ' for ' + f.description, function () {
+        assert.throws(function () {
+          var network = NETWORKS['decred']
+          var tx = Transaction.fromHex(f.hex, network)
+          TransactionBuilder.fromTransaction(tx, network)
+        }, new RegExp(f.exception))
+      })
+    })
+
     fixtures.zcash.valid.forEach(function (testData) {
       it('returns TransactionBuilder, with ' + testData.description, function () {
         var network = NETWORKS['zcash']
