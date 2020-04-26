@@ -16,6 +16,7 @@ Synchronized with upstream 1.5.0 version
 - Capricoin support
 - Zcash testnet support (coin shortcut: TAZ)
 - Peercoin support
+- Decred support
 
 Update from upstream:
 - `git checkout trezor`

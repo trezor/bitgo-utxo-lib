@@ -30,7 +30,7 @@ var Network = typeforce.compile({
   },
   pubKeyHash: networkVersion,
   scriptHash: networkVersion,
-  wif: typeforce.UInt8
+  wif: typeforce.oneOf(typeforce.UInt8, typeforce.UInt16)
 })
 
 // extend typeforce types with ours

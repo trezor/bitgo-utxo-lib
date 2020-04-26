@@ -2,6 +2,7 @@
 
 var assert = require('assert')
 var baddress = require('../src/address')
+var coins = require('../src/coins')
 var networks = require('../src/networks')
 var bscript = require('../src/script')
 var fixtures = require('./fixtures/address.json')
@@ -12,7 +13,7 @@ describe('address', function () {
       if (!f.base58check) return
 
       it('decodes ' + f.base58check, function () {
-        var decode = baddress.fromBase58Check(f.base58check)
+        var decode = baddress.fromBase58Check(f.base58check, coins[f.coin])
 
         assert.strictEqual(decode.version, f.version)
         assert.strictEqual(decode.hash.toString('hex'), f.hash)
@@ -22,7 +23,7 @@ describe('address', function () {
     fixtures.invalid.fromBase58Check.forEach(function (f) {
       it('throws on ' + f.exception, function () {
         assert.throws(function () {
-          baddress.fromBase58Check(f.address)
+          baddress.fromBase58Check(f.address, coins[f.coin])
         }, new RegExp(f.address + ' ' + f.exception))
       })
     })
@@ -76,7 +77,7 @@ describe('address', function () {
       if (!f.base58check) return
 
       it('encodes ' + f.hash + ' (' + f.network + ')', function () {
-        var address = baddress.toBase58Check(Buffer.from(f.hash, 'hex'), f.version)
+        var address = baddress.toBase58Check(Buffer.from(f.hash, 'hex'), f.version, coins[f.coin])
 
         assert.strictEqual(address, f.base58check)
       })
