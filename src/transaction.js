@@ -1198,15 +1198,27 @@ Transaction.prototype.setWitness = function (index, witness) {
 
 Transaction.prototype.getExtraData = function () {
   if (this.supportsJoinSplits()) {
+    if (this.isOverwinterCompatible()) {
+      offset += 4 // nVersionGroupId
+    }
+    offset += varuint.encodingLength(this.ins.length)  // tx_in_count
+    offset += this.ins.reduce(function (sum, input) { return sum + 40 + varSliceSize(input.script) }, 0)  // tx_in
+    offset += varuint.encodingLength(this.outs.length)  // tx_out_count
+    offset += this.outs.reduce(function (sum, output) { return sum + 8 + varSliceSize(output.script) }, 0)  // tx_out
+    offset += 4  // lock_time
+    if (this.isOverwinterCompatible()) {
+      offset += 4  // nExpiryHeight
+    }
+
     var buffer = this.toBuffer()
-    var joinsplitByteLength = this.getJoinSplitByteLength()
-    var res = buffer.slice(buffer.length - joinsplitByteLength)
-    return res
+    return buffer.slice(offset)
   }
+
   if (this.isDashSpecialTransaction()) {
     var extraDataLength = varuint.encode(this.extraPayload.length)
     return Buffer.concat([extraDataLength, this.extraPayload])
   }
   return null
 }
+
 module.exports = Transaction
