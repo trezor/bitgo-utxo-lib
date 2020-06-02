@@ -1198,6 +1198,7 @@ Transaction.prototype.setWitness = function (index, witness) {
 
 Transaction.prototype.getExtraData = function () {
   if (this.supportsJoinSplits()) {
+    var offset = 4 // header
     if (this.isOverwinterCompatible()) {
       offset += 4 // nVersionGroupId
     }
