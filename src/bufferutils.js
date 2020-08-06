@@ -60,6 +60,16 @@ function writeUInt64LEasString (buffer, value, offset) {
   return offset + 8
 }
 
+function writeInt64LE (buffer, value, offset) {
+  var Int64LE = require('int64-buffer').Int64LE
+  var v = new Int64LE(value)
+  var a = v.toArray()
+  for (var i = 0; i < 8; i++) {
+    buffer.writeUInt8(a[i], offset + i)
+  }
+  return offset + 8
+}
+
 // TODO: remove in 4.0.0?
 function readVarInt (buffer, offset) {
   var result = varuint.decode(buffer, offset)
@@ -88,5 +98,6 @@ module.exports = {
   writePushDataInt: pushdata.encode,
   writeUInt64LE: writeUInt64LE,
   writeUInt64LEasString: writeUInt64LEasString,
+  writeInt64LE: writeInt64LE,
   writeVarInt: writeVarInt
 }

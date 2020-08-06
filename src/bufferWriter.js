@@ -27,6 +27,10 @@ BufferWriter.prototype.writeUInt64 = function (input) {
   this.offset = bufferutils.writeUInt64LE(this.buffer, input, this.offset)
 }
 
+BufferWriter.prototype.writeInt64 = function (input) {
+  this.offset = bufferutils.writeInt64LE(this.buffer, input, this.offset)
+}
+
 BufferWriter.prototype.writeVarInt = function (input) {
   varuint.encode(input, this.buffer, this.offset)
   this.offset += varuint.encode.bytes
