@@ -204,7 +204,7 @@ function fixMultisigOrder (input, transaction, vin, value, network) {
         case coins.BTG:
           hash = transaction.hashForGoldSignature(vin, input.signScript, value, parsed.hashType)
           break
-        case coins.DCR:
+        case coins.DCR || coins.TDCR || coins.SDCR:
           hash = transaction.hashForDecredSignature(vin, input.signScript, parsed.hashType)
           break
         case coins.ZEC:

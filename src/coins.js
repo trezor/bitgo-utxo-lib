@@ -14,7 +14,9 @@ const coins = {
   PEERCOIN: 'ppc',
   PEERCOINTEST: 'tppc',
   KMD: 'kmd',
-  DCR: 'dcr'
+  DCR: 'dcr',
+  TDCR: 'tdcr',
+  SDCR: 'sdcr'
 }
 
 coins.isBitcoin = function (network) {
@@ -66,7 +68,9 @@ coins.isPeercoin = function (network) {
 }
 
 coins.isDecred = function (network) {
-  return typeforce.value(coins.DCR)(network.coin)
+  return typeforce.value(coins.DCR)(network.coin) ||
+         typeforce.value(coins.TDCR)(network.coin) ||
+         typeforce.value(coins.SDCR)(network.coin)
 }
 
 coins.hasTimestamp = function (network) {

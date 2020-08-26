@@ -130,8 +130,9 @@ ECPair.makeRandom = function (options) {
 }
 
 ECPair.prototype.getAddress = function () {
-  var hash160 = this.getNetwork().coin === coins.DCR ? bcrypto.hash160blake256 : bcrypto.hash160
-  return baddress.toBase58Check(hash160(this.getPublicKeyBuffer()), this.getNetwork().pubKeyHash, this.getNetwork().coin)
+  const net = this.getNetwork()
+  var hash160 = coins.isDecred(net) ? bcrypto.hash160blake256 : bcrypto.hash160
+  return baddress.toBase58Check(hash160(this.getPublicKeyBuffer()), net.pubKeyHash, net)
 }
 
 ECPair.prototype.getNetwork = function () {

@@ -7,13 +7,16 @@ var networks = require('../src/networks')
 var bscript = require('../src/script')
 var fixtures = require('./fixtures/address.json')
 
+const nets = Object.values(networks)
+
 describe('address', function () {
   describe('fromBase58Check', function () {
     fixtures.standard.forEach(function (f) {
       if (!f.base58check) return
 
       it('decodes ' + f.base58check, function () {
-        var decode = baddress.fromBase58Check(f.base58check, coins[f.coin])
+        const net = nets.find(n => n.coin === coins[f.coin])
+        var decode = baddress.fromBase58Check(f.base58check, net)
 
         assert.strictEqual(decode.version, f.version)
         assert.strictEqual(decode.hash.toString('hex'), f.hash)
@@ -23,7 +26,8 @@ describe('address', function () {
     fixtures.invalid.fromBase58Check.forEach(function (f) {
       it('throws on ' + f.exception, function () {
         assert.throws(function () {
-          baddress.fromBase58Check(f.address, coins[f.coin])
+          var net = nets.find(n => n.coin === coins[f.coin])
+          baddress.fromBase58Check(f.address, net)
         }, new RegExp(f.address + ' ' + f.exception))
       })
     })
@@ -77,7 +81,8 @@ describe('address', function () {
       if (!f.base58check) return
 
       it('encodes ' + f.hash + ' (' + f.network + ')', function () {
-        var address = baddress.toBase58Check(Buffer.from(f.hash, 'hex'), f.version, coins[f.coin])
+        var net = nets.find(n => n.coin === coins[f.coin])
+        var address = baddress.toBase58Check(Buffer.from(f.hash, 'hex'), f.version, net)
 
         assert.strictEqual(address, f.base58check)
       })

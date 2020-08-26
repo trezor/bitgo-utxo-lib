@@ -252,7 +252,7 @@ module.exports = {
     pubKeyHash: 0x0f21,
     scriptHash: 0x0efc,
     wif: 0x230e,
-    coin: coins.DCR
+    coin: coins.TDCR
   },
   decredSim: {
     messagePrefix: '\x17Decred Signed Message:\n',
@@ -263,6 +263,6 @@ module.exports = {
     pubKeyHash: 0x0e91,
     scriptHash: 0x0e6c,
     wif: 0x2307,
-    coin: coins.DCR
+    coin: coins.SDCR
   }
 }
