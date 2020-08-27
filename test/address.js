@@ -7,7 +7,15 @@ var networks = require('../src/networks')
 var bscript = require('../src/script')
 var fixtures = require('./fixtures/address.json')
 
-const nets = Object.values(networks)
+function dictToArray (d) {
+  var nets = []
+  Object.keys(d).forEach(function (k) {
+    nets.push(d[k])
+  })
+  return nets
+}
+
+const nets = dictToArray(networks)
 
 describe('address', function () {
   describe('fromBase58Check', function () {
