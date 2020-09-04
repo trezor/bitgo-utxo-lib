@@ -5,8 +5,8 @@ var typeforce = require('typeforce')
 var types = require('./types')
 var scriptNumber = require('./script_number')
 
-var OPS = require('bitcoin-ops')
-var REVERSE_OPS = require('bitcoin-ops/map')
+var OPS = require('./ops').ops
+var REVERSE_OPS = require('./ops').reversed
 var OP_INT_BASE = OPS.OP_RESERVED // OP_1 - 1
 
 function isOPInt (value) {
