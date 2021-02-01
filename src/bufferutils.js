@@ -1,6 +1,7 @@
 var pushdata = require('pushdata-bitcoin')
 var varuint = require('varuint-bitcoin')
 var BigInteger = require('bigi')
+var Int64LE = require('int64-buffer').Int64LE
 
 // https://github.com/feross/buffer/blob/master/index.js#L1127
 function verifuint (value, max) {
@@ -55,13 +56,12 @@ function writeUInt64LEasString (buffer, value, offset) {
   if (typeof value !== 'string') {
     return writeUInt64LE(buffer, value, offset)
   }
-  buffer.writeInt32LE(value & -1, offset)
-  buffer.writeUInt32LE(Math.floor(value / 0x100000000), offset + 4)
+  var v = new Int64LE(value)
+  v.toBuffer().copy(buffer, offset)
   return offset + 8
 }
 
 function writeInt64LE (buffer, value, offset) {
-  var Int64LE = require('int64-buffer').Int64LE
   var v = new Int64LE(value)
   var a = v.toArray()
   for (var i = 0; i < 8; i++) {
