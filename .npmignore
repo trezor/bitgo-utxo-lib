@@ -6,6 +6,7 @@ test
 .arclint
 .travis.yml
 .gitignore
+.github
 
 # Editors
 .editorconfig
@@ -21,6 +22,9 @@ package-lock.json
 
 # OSX
 .DS_Store
+
+# Nix
+shell.nix
 
 # Logs
 logs
