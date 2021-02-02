@@ -11,8 +11,8 @@ stdenv.mkDerivation {
   buildInputs = [
     autoPatchelfHook
     git
-    nodejs-12_x
-    (yarn.override { nodejs = nodejs-12_x; })
+    nodejs
+    yarn
   ];
   shellHook = ''
     export HISTFILE=".nix_bash_history"
