@@ -1,14 +1,17 @@
 var Buffer = require('safe-buffer').Buffer
 var bech32 = require('bech32')
 var bs58check = require('bs58check')
+var bbs58checkBlake256 = require('./bs58checkBlake256')
 var bscript = require('./script')
 var btemplates = require('./templates')
+var coins = require('./coins')
 var networks = require('./networks')
 var typeforce = require('typeforce')
 var types = require('./types')
 
-function fromBase58Check (address) {
-  var payload = bs58check.decode(address)
+function fromBase58Check (address, network = null) {
+  var decode = network && coins.isDecred(network) ? bbs58checkBlake256.decodeBlake256 : bs58check.decode
+  var payload = decode(address)
 
   // TODO: 4.0.0, move to "toOutputScript"
   if (payload.length < 21) throw new TypeError(address + ' is too short')
@@ -34,11 +37,12 @@ function fromBech32 (address) {
   }
 }
 
-function toBase58Check (hash, version) {
+function toBase58Check (hash, version, network = null) {
   typeforce(types.tuple(types.Hash160bit, types.UInt16), arguments)
 
-  // Zcash adds an extra prefix resulting in a bigger (22 bytes) payload. We identify them Zcash by checking if the
-  // version is multibyte (2 bytes instead of 1)
+  // Zcash and Decred add an extra prefix resulting in a bigger (22 bytes)
+  // payload. We identify them by checking if the version is multibyte (2 bytes
+  // instead of 1)
   var multibyte = version > 0xff
   var size = multibyte ? 22 : 21
   var offset = multibyte ? 2 : 1
@@ -47,7 +51,8 @@ function toBase58Check (hash, version) {
   multibyte ? payload.writeUInt16BE(version, 0) : payload.writeUInt8(version, 0)
   hash.copy(payload, offset)
 
-  return bs58check.encode(payload)
+  var encode = network && coins.isDecred(network) ? bbs58checkBlake256.encodeBlake256 : bs58check.encode
+  return encode(payload)
 }
 
 function toBech32 (data, version, prefix) {
@@ -60,8 +65,8 @@ function toBech32 (data, version, prefix) {
 function fromOutputScript (outputScript, network) {
   network = network || networks.bitcoin
 
-  if (btemplates.pubKeyHash.output.check(outputScript)) return toBase58Check(bscript.compile(outputScript).slice(3, 23), network.pubKeyHash)
-  if (btemplates.scriptHash.output.check(outputScript)) return toBase58Check(bscript.compile(outputScript).slice(2, 22), network.scriptHash)
+  if (btemplates.pubKeyHash.output.check(outputScript)) return toBase58Check(bscript.compile(outputScript).slice(3, 23), network.pubKeyHash, network)
+  if (btemplates.scriptHash.output.check(outputScript)) return toBase58Check(bscript.compile(outputScript).slice(2, 22), network.scriptHash, network)
   if (btemplates.witnessPubKeyHash.output.check(outputScript)) return toBech32(bscript.compile(outputScript).slice(2, 22), 0, network.bech32)
   if (btemplates.witnessScriptHash.output.check(outputScript)) return toBech32(bscript.compile(outputScript).slice(2, 34), 0, network.bech32)
 
@@ -73,7 +78,7 @@ function toOutputScript (address, network) {
 
   var decode
   try {
-    decode = fromBase58Check(address)
+    decode = fromBase58Check(address, network)
   } catch (e) {}
 
   if (decode) {

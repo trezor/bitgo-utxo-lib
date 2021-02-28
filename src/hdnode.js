@@ -1,6 +1,8 @@
 var Buffer = require('safe-buffer').Buffer
 var base58check = require('bs58check')
+var bbs58checkBlake256 = require('./bs58checkBlake256')
 var bcrypto = require('./crypto')
+var coins = require('./coins')
 var createHmac = require('create-hmac')
 var typeforce = require('typeforce')
 var types = require('./types')
@@ -57,7 +59,8 @@ HDNode.fromSeedHex = function (hex, network) {
 
 HDNode.fromBase58 = function (string, networks, skipValidation = false) {
   // FixMe: Issue #38, this method just pops the latest network object from the list instead of being more discerning.
-  var buffer = base58check.decode(string)
+  const decode = networks && coins.isDecred(networks) ? bbs58checkBlake256.decodeBlake256Key : base58check.decode
+  var buffer = decode(string)
   if (buffer.length !== 78) throw new Error('Invalid buffer length')
 
   // 4 bytes: version bytes
@@ -134,7 +137,8 @@ HDNode.prototype.getAddress = function () {
 }
 
 HDNode.prototype.getIdentifier = function () {
-  return bcrypto.hash160(this.keyPair.getPublicKeyBuffer())
+  const hash160 = coins.isDecred(this.getNetwork()) ? bcrypto.hash160blake256 : bcrypto.hash160
+  return hash160(this.keyPair.getPublicKeyBuffer())
 }
 
 HDNode.prototype.getFingerprint = function () {
@@ -206,7 +210,8 @@ HDNode.prototype.toBase58 = function (__isPrivate) {
     this.keyPair.getPublicKeyBuffer().copy(buffer, 45)
   }
 
-  return base58check.encode(buffer)
+  const encode = coins.isDecred(network) ? bbs58checkBlake256.encodeBlake256 : base58check.encode
+  return encode(buffer)
 }
 
 // https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#child-key-derivation-ckd-functions

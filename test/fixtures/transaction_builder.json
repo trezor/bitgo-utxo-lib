@@ -2395,5 +2395,199 @@
         "joinsplitSigLength": 0
       }
     ]
+  },
+  "decred": {
+    "valid": [
+      {
+        "description": "decred mainnet regular transaction",
+        "hex": "01000000035fb1b570a1fd2795f4a7aea3f0b3874c4b33c1d4b7cb4c2e29456806536594ce0200000000ffffffff6757dd66c980bff512080dfb5ea5d21c3eebdf5a69569ea3a7eb3dffd2498e4d0300000001fffffffffb44485a5cdb09508d616e262ba8b05aa600ec244f95ba3a6c543f6cdeafae090200000000ffffffff0366ea1a000000000000001976a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac259b1b530300000000001976a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac5bd642a20200000000001976a9148ce1b6887003bdd2e3b3bc4354a49c0230dd02db88ac0000000000000000037df5700500000000c5dd0600010000006a47304402207dcdf4964867cfc3e4a7dd428c646fd21b041b9dfb076f386c46369448f834a702206541ee4b22fb48f9f5a0223c5b5c062a5b63ce026d701163344985a62017f5d201210246db4bad27e1c5284c45da941e62384bcf0c73cb6a70f0586659627432891813b5efef3003000000b8e20600000000006a47304402202a69781fac35d03bc93ef3927fc88eda0cc7ace9d1238f639a0fb9fa6621837702203dc3d16a0c7d9b2adf456f6889c1297d43d2c19a7d681713242eb251e68176560121025467d8fe51fa72c852d804fad1907072c8982bd1ee6d2cfda542226f4d87e643f68e18bf02000000b1c506000b0000006b483045022100c71502cef59fa1bdd4bd74ce63ac9b6d37861c934f5294e6478191ce379b292a0220045c497050e96a04d999757c705f708831b27c5d23dca462e2c12468f9dc1d430121027bbffa872daa09470dcde36fc542bb3fc408c1ee11338204f902ad958f723cb8",
+        "insLength": 3,
+        "outsLength": 3,
+        "hash": "310bd630b08b022c09f7ef75494b84b6a3be3ff7d3a61878f35616ceea3559ba",
+	"type": 0,
+	"version": 1,
+        "locktime": 0,
+        "expiry": 0,
+        "ins": [
+          {
+            "hash": "ce946553066845292e4ccbb7d4c1334b4c87b3f0a3aea7f49527fda170b5b15f",
+            "index": 2,
+            "tree": 0,
+            "script": "47304402207dcdf4964867cfc3e4a7dd428c646fd21b041b9dfb076f386c46369448f834a702206541ee4b22fb48f9f5a0223c5b5c062a5b63ce026d701163344985a62017f5d201210246db4bad27e1c5284c45da941e62384bcf0c73cb6a70f0586659627432891813",
+            "sequence": 4294967295,
+            "value": 91288957,
+            "height": 449989,
+            "blockIndex": 1
+          },
+          {
+            "hash": "4d8e49d2ff3deba7a39e56695adfeb3e1cd2a55efb0d0812f5bf80c966dd5767",
+            "index": 3,
+            "tree": 1,
+            "script": "47304402202a69781fac35d03bc93ef3927fc88eda0cc7ace9d1238f639a0fb9fa6621837702203dc3d16a0c7d9b2adf456f6889c1297d43d2c19a7d681713242eb251e68176560121025467d8fe51fa72c852d804fad1907072c8982bd1ee6d2cfda542226f4d87e643",
+            "sequence": 4294967295,
+            "value": 13705932725,
+            "height": 451256,
+            "blockIndex": 0
+          },
+          {
+            "hash": "09aeafde6c3f546c3aba954f24ec00a65ab0a82b266e618d5009db5c5a4844fb",
+            "index": 2,
+            "tree": 0,
+            "script": "483045022100c71502cef59fa1bdd4bd74ce63ac9b6d37861c934f5294e6478191ce379b292a0220045c497050e96a04d999757c705f708831b27c5d23dca462e2c12468f9dc1d430121027bbffa872daa09470dcde36fc542bb3fc408c1ee11338204f902ad958f723cb8",
+            "sequence": 4294967295,
+            "value": 11795992310,
+            "height": 443825,
+            "blockIndex": 11
+          }
+        ],
+        "outs": [
+          {
+            "value": "1763942",
+            "script": "76a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac",
+            "version": 0
+          },
+          {
+            "value": "14279220005",
+            "script": "76a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac",
+            "version": 0
+          },
+          {
+            "value": "11312223835",
+            "script": "76a9148ce1b6887003bdd2e3b3bc4354a49c0230dd02db88ac",
+            "version": 0
+          }
+        ]
+      },
+      {
+        "description": "decred mainnet regular transaction no witness",
+        "hex": "01000100035fb1b570a1fd2795f4a7aea3f0b3874c4b33c1d4b7cb4c2e29456806536594ce0200000000ffffffff6757dd66c980bff512080dfb5ea5d21c3eebdf5a69569ea3a7eb3dffd2498e4d0300000001fffffffffb44485a5cdb09508d616e262ba8b05aa600ec244f95ba3a6c543f6cdeafae090200000000ffffffff0366ea1a000000000000001976a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac259b1b530300000000001976a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac5bd642a20200000000001976a9148ce1b6887003bdd2e3b3bc4354a49c0230dd02db88ac0000000000000000",
+        "insLength": 3,
+        "outsLength": 3,
+        "hash": "310bd630b08b022c09f7ef75494b84b6a3be3ff7d3a61878f35616ceea3559ba",
+	"type": 1,
+	"version": 1,
+        "locktime": 0,
+        "expiry": 0,
+        "ins": [
+          {
+            "hash": "ce946553066845292e4ccbb7d4c1334b4c87b3f0a3aea7f49527fda170b5b15f",
+            "index": 2,
+            "tree": 0,
+            "sequence": 4294967295
+          },
+          {
+            "hash": "4d8e49d2ff3deba7a39e56695adfeb3e1cd2a55efb0d0812f5bf80c966dd5767",
+            "index": 3,
+            "tree": 1,
+            "sequence": 4294967295
+          },
+          {
+            "hash": "09aeafde6c3f546c3aba954f24ec00a65ab0a82b266e618d5009db5c5a4844fb",
+            "index": 2,
+            "tree": 0,
+            "sequence": 4294967295
+          }
+        ],
+        "outs": [
+          {
+            "value": "1763942",
+            "script": "76a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac",
+            "version": 0
+          },
+          {
+            "value": "14279220005",
+            "script": "76a9141efd385c4b4fa8a0205fc9a47ef8abe160b7172388ac",
+            "version": 0
+          },
+          {
+            "value": "11312223835",
+            "script": "76a9148ce1b6887003bdd2e3b3bc4354a49c0230dd02db88ac",
+            "version": 0
+          }
+        ]
+      },
+      {
+        "description": "decred mainnet stake submission",
+        "hex": "01000000015a2400663125cdd345befe21211587798d8a1a508890a8f8fbd609818a20f6cc0000000000ffffffff03093086930300000000001aba76a9143123be63fac71b035632d7e8a9a4172ee7685e3388ac00000000000000000000206a1ed2f36be7b1d27c52191ffa6689f83d9bfaed6879ad3b8693030000000058000000000000000000001abd76a914000000000000000000000000000000000000000088ac00000000f0e7060001ad3b86930300000090e70600090000006a473044022066344f1690bce7aa64bbc49d800c14533353a8f769ceb79a926ca8d22ac5f31502201bfe6c237c961d3bd71d60c856a166ecb961b6188eadbb418fefd7c16d72953e012102b25c3d01894e5d4222e2e71952d686ace4a21d54c1ea1f8bbb0943efe05bb643",
+        "insLength": 1,
+        "outsLength": 3,
+        "hash": "a7118e76698e96964b61b96176338c81bded54fbbe2dca8df38ba690ee45413d",
+	"type": 0,
+	"version": 1,
+        "locktime": 0,
+        "expiry": 452592,
+        "ins": [
+          {
+            "hash": "ccf6208a8109d6fbf8a89088501a8a8d7987152121febe45d3cd25316600245a",
+            "index": 0,
+            "tree": 0,
+            "script": "473044022066344f1690bce7aa64bbc49d800c14533353a8f769ceb79a926ca8d22ac5f31502201bfe6c237c961d3bd71d60c856a166ecb961b6188eadbb418fefd7c16d72953e012102b25c3d01894e5d4222e2e71952d686ace4a21d54c1ea1f8bbb0943efe05bb643",
+            "sequence": 4294967295,
+            "value": 15359949741,
+            "height": 452496,
+            "blockIndex": 9
+          }
+        ],
+        "outs": [
+          {
+            "value": "15359946761",
+            "script": "ba76a9143123be63fac71b035632d7e8a9a4172ee7685e3388ac",
+            "version": 0
+          },
+          {
+            "value": "0",
+            "script": "6a1ed2f36be7b1d27c52191ffa6689f83d9bfaed6879ad3b8693030000000058",
+            "version": 0
+          },
+          {
+            "value": "0",
+            "script": "bd76a914000000000000000000000000000000000000000088ac",
+            "version": 0
+          }
+        ]
+      },
+      {
+        "description": "decred mainnet stake revocation",
+        "hex": "010000000157191239913fdd25bd4f8cc9b07e26d388b8afa4301275adb9182e3454ea24ba0000000001ffffffff01a358ce380300000000001abc76a91476c79b074c68a16338b4bfd87e86175e3134efb688ac0000000000000000013b61ce38030000009ec10600060000006b483045022100d3f286ae7fffbab596db4102f365b4bf294add40f8c2ff1cb3c7ff5f18ef0dec022079b4b7a9ad9a899a3014a8ac2a148d3914d71a98e9559845c3e80369a4081fa70121038585e8b324abd735ad2814f1c75c5daf63c0d432b51ff1ca52d411007c188052",
+        "insLength": 1,
+        "outsLength": 1,
+        "hash": "cf9a6d6434f18c7f6183ea6b07d07df06a77caafa7e9b23b3ab52249c4feed73",
+	"type": 0,
+	"version": 1,
+        "locktime": 0,
+        "expiry": 0,
+        "ins": [
+          {
+            "hash": "ba24ea54342e18b9ad751230a4afb888d3267eb0c98c4fbd25dd3f9139121957",
+            "index": 0,
+            "tree": 1,
+            "script": "483045022100d3f286ae7fffbab596db4102f365b4bf294add40f8c2ff1cb3c7ff5f18ef0dec022079b4b7a9ad9a899a3014a8ac2a148d3914d71a98e9559845c3e80369a4081fa70121038585e8b324abd735ad2814f1c75c5daf63c0d432b51ff1ca52d411007c188052",
+            "sequence": 4294967295,
+            "value": 13837951291,
+            "height": 442782,
+            "blockIndex": 6
+          }
+        ],
+        "outs": [
+          {
+            "value": "13837949091",
+            "script": "bc76a91476c79b074c68a16338b4bfd87e86175e3134efb688ac",
+            "version": 0
+          }
+        ]
+      }
+    ],
+    "invalid": [
+      {
+        "description": "decred mainnet coinbase",
+        "hex": "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff00ffffffff032545fe0800000000000017a914f5916158e3e2c4551c1796708db8367207ed13bb87000000000000000000000e6a0cc3e70600b760ecdc1623f3bf14b30c360000000000001976a914bd4404f16675528997da3d78cf08e1fcc0806b6b88ac00000000000000000105e4f33e0000000000000000ffffffff0800002f646372642f",
+	"exception": "coinbase inputs not supported"
+      },
+      {
+        "description": "decred mainnet stakegen",
+        "hex": "01000000020000000000000000000000000000000000000000000000000000000000000000ffffffff00ffffffffc28fa364613df7835d07205d5fc4be06f07bddeffb0f8ca8cef44ad21b6996d40000000001ffffffff0300000000000000000000266a24afa6e6dcf08b3e1e87b9079f2835b7a156a3d3aaf42ef30c000000000000000090e7060000000000000000000000086a060500070000000fcd9b580300000000001abb76a914dd931f55ffacd38be3cad2cb88df45681212c87388ac000000000000000002b05c65050000000000000000ffffffff0200005f703653030000003ee50600050000006a47304402204d61f42e8714c9c1da61267d20fb29855fd1f61451721fcbf05fc0dea5c4962a02201a663f706992760872109ab49153d75ca9927334f364ba9eb125cb742babe22c012103d494c352ec1a1521a083056c8694f6dced78fc2a99ed31964c58705b7ff5f814",
+	"exception": "coinbase inputs not supported"
+      }
+    ]
   }
 }

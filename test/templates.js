@@ -58,7 +58,10 @@ describe('script-templates', function () {
     'witnessScriptHash',
     'multisig',
     'nullData',
-    'witnessCommitment'
+    'witnessCommitment',
+    'sstxSubmissionPKH',
+    'sstxSubmissionSH',
+    'sstxChange'
   ].forEach(function (name) {
     var inputType = btemplates[name].input
     var outputType = btemplates[name].output
@@ -508,6 +511,57 @@ describe('script-templates', function () {
 
       it('decodes to ' + f.data, function () {
         assert.deepEqual(btemplates.nullData.output.decode(output), data)
+      })
+    })
+  })
+
+  describe('sstxsubmissionPKH.output', function () {
+    fixtures.valid.forEach(function (f) {
+      if (f.type !== 'sstxsubmissionpkh') return
+
+      var data = Buffer.from(f.data, 'hex')
+      var output = btemplates.sstxSubmissionPKH.output.encode(data)
+
+      it('encodes to ' + f.output, function () {
+        assert.strictEqual(bscript.toASM(output), f.output)
+      })
+
+      it('decodes to ' + f.data, function () {
+        assert.deepEqual(btemplates.sstxSubmissionPKH.output.decode(output), data)
+      })
+    })
+  })
+
+  describe('sstxsubmissionSH.output', function () {
+    fixtures.valid.forEach(function (f) {
+      if (f.type !== 'sstxsubmissionsh') return
+
+      var data = Buffer.from(f.data, 'hex')
+      var output = btemplates.sstxSubmissionSH.output.encode(data)
+
+      it('encodes to ' + f.output, function () {
+        assert.strictEqual(bscript.toASM(output), f.output)
+      })
+
+      it('decodes to ' + f.data, function () {
+        assert.deepEqual(btemplates.sstxSubmissionSH.output.decode(output), data)
+      })
+    })
+  })
+
+  describe('sstxchange.output', function () {
+    fixtures.valid.forEach(function (f) {
+      if (f.type !== 'sstxchange') return
+
+      var data = Buffer.from(f.data, 'hex')
+      var output = btemplates.sstxChange.output.encode(data)
+
+      it('encodes to ' + f.output, function () {
+        assert.strictEqual(bscript.toASM(output), f.output)
+      })
+
+      it('decodes to ' + f.data, function () {
+        assert.deepEqual(btemplates.sstxChange.output.decode(output), data)
       })
     })
   })
