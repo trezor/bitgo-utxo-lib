@@ -13,7 +13,10 @@ const coins = {
   CAPRICOIN: 'cpc',
   PEERCOIN: 'ppc',
   PEERCOINTEST: 'tppc',
-  KMD: 'kmd'
+  KMD: 'kmd',
+  DCR: 'dcr',
+  TDCR: 'tdcr',
+  SDCR: 'sdcr'
 }
 
 coins.isBitcoin = function (network) {
@@ -64,6 +67,12 @@ coins.isPeercoin = function (network) {
   return typeforce.value(coins.PEERCOIN)(network.coin) || typeforce.value(coins.PEERCOINTEST)(network.coin)
 }
 
+coins.isDecred = function (network) {
+  return typeforce.value(coins.DCR)(network.coin) ||
+         typeforce.value(coins.TDCR)(network.coin) ||
+         typeforce.value(coins.SDCR)(network.coin)
+}
+
 coins.hasTimestamp = function (network) {
   return this.isCapricoin(network) || this.isPeercoin(network)
 }
@@ -78,7 +87,8 @@ coins.isValidCoin = typeforce.oneOf(
   coins.isKomodo,
   coins.isZcashType,
   coins.isCapricoin,
-  coins.isPeercoin
+  coins.isPeercoin,
+  coins.isDecred
 )
 
 module.exports = coins

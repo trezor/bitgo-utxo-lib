@@ -1,5 +1,6 @@
 var baddress = require('./address')
 var bcrypto = require('./crypto')
+var coins = require('./coins')
 var ecdsa = require('./ecdsa')
 var randomBytes = require('randombytes')
 var typeforce = require('typeforce')
@@ -129,7 +130,9 @@ ECPair.makeRandom = function (options) {
 }
 
 ECPair.prototype.getAddress = function () {
-  return baddress.toBase58Check(bcrypto.hash160(this.getPublicKeyBuffer()), this.getNetwork().pubKeyHash)
+  const net = this.getNetwork()
+  var hash160 = coins.isDecred(net) ? bcrypto.hash160blake256 : bcrypto.hash160
+  return baddress.toBase58Check(hash160(this.getPublicKeyBuffer()), net.pubKeyHash, net)
 }
 
 ECPair.prototype.getNetwork = function () {

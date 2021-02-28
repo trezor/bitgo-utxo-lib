@@ -4,6 +4,9 @@ var nullData = require('./nulldata')
 var pubKey = require('./pubkey')
 var pubKeyHash = require('./pubkeyhash')
 var scriptHash = require('./scripthash')
+var sstxSubmissionPKH = require('./sstxsubmissionpkh')
+var sstxSubmissionSH = require('./sstxsubmissionsh')
+var sstxChange = require('./sstxchange')
 var witnessPubKeyHash = require('./witnesspubkeyhash')
 var witnessScriptHash = require('./witnessscripthash')
 var witnessCommitment = require('./witnesscommitment')
@@ -17,7 +20,10 @@ var types = {
   P2SH: 'scripthash',
   P2WPKH: 'witnesspubkeyhash',
   P2WSH: 'witnessscripthash',
-  WITNESS_COMMITMENT: 'witnesscommitment'
+  WITNESS_COMMITMENT: 'witnesscommitment',
+  SSTXSUBMISSIONPKH: 'sstxsubmissionpkh',
+  SSTXSUBMISSIONSH: 'sstxsubmissionsh',
+  SSTXCHANGE: 'sstxchange'
 }
 
 function classifyOutput (script) {
@@ -25,6 +31,9 @@ function classifyOutput (script) {
   if (witnessScriptHash.output.check(script)) return types.P2WSH
   if (pubKeyHash.output.check(script)) return types.P2PKH
   if (scriptHash.output.check(script)) return types.P2SH
+  if (sstxSubmissionPKH.output.check(script)) return types.SSTXSUBMISSIONPKH
+  if (sstxSubmissionSH.output.check(script)) return types.SSTXSUBMISSIONSH
+  if (sstxChange.output.check(script)) return types.SSTXCHANGE
 
   // XXX: optimization, below functions .decompile before use
   var chunks = decompile(script)
@@ -67,6 +76,9 @@ module.exports = {
   pubKey: pubKey,
   pubKeyHash: pubKeyHash,
   scriptHash: scriptHash,
+  sstxSubmissionPKH: sstxSubmissionPKH,
+  sstxSubmissionSH: sstxSubmissionSH,
+  sstxChange: sstxChange,
   witnessPubKeyHash: witnessPubKeyHash,
   witnessScriptHash: witnessScriptHash,
   witnessCommitment: witnessCommitment,
